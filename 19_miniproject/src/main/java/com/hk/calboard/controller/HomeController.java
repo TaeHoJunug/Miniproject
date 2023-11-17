@@ -9,6 +9,6 @@ public class HomeController {
 	@GetMapping(value = "/")
 	public String home() {
 		System.out.println("home");
-		return "thymeleaf/home";
+		return "member/login";
 	}
 }
