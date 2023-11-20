@@ -50,7 +50,7 @@ public class MemberService {
 		MemberDto dto = memberMapper.loginUser(loginCommand.getId());
 		String path="home";
 		if(dto!=null) {
-			//로그인 폼에서 입력받은 패스워드값과 DB에 암호화된 패스워드 비교
+			//로그인 폼에서 입력받은 패스워드값과 DB에 암호화된 패스워드 비교22
 			if(passwordEncoder.matches(loginCommand.getPassword()
 					                  , dto.getPassword())) {
 				System.out.println("패스워드 같음: 회원이 맞음");
