@@ -1,44 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout}">
+	  layout:decorate="~{/thymeleaf/layouts/layout}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 // click(), change().... 
 // on(), bind().... 이벤트 핸들러 함수
-	$(function(){
-		// on("eventType",funciton(){})
-		$("input[name=id]").on("keyup",function(){
-			var id=$(this).val();// id입력박스에 입력한 id값가져오기 value-> val()
-// 			console.log(id);
-			$.ajax({
-				url:"/user/idChk",
-				method:"get",
-				dataType:"json",
-				async:false,
-				data:{"id":id},
-				success:function(data){
-					if(data.id!=null){ // 사용할 수 없는 id
-// 						console.log("사용못함");
-						$("#idChk").attr("class","n")
-								   .css("color","red")
-						           .text("사용할 수 없는 아이디입니다.");
-					
-					}else{ //사용할 수 있는 id
-// 						console.log("사용함");
-						$("#idChk").attr("class","y")
-									.css("color","red")
-								   .text("사용 가능한 아이디입니다.");
-					}
-				},
-				error:function(e){
-					alert("통신오류:"+e);
-				}
-			});
-		});
-	});
+$(function(){
+   // on("eventType", function(){})
+   $("input[name=id]").on("keyup", function(){
+      var id=$(this).val(); // id 입력박스에 입력한 id값 가져오기 value -> val()
+      $.ajax({
+         url:"/user/idChk",
+         method:"get",
+         dataType:"json",
+         async:false,
+         data:{"id":id},
+         success:function(data){
+            if(data.id!=null){ // 사용할 수 없는 id
+               $("#idChk").attr("class", "n").css("color","red").text("사용못함ㅋ");
+            }else{  // 사용할 수 있는 id
+               $("#idChk").attr("class", "y").css("color","red").text("사용가능ㅇㅇ");
+            }
+         },
+         error:function(e){
+            alert("통신오류"+e);
+         }
+      });
+   });
+});
 	
 	//중복된 아이디로 submit할 경우 처리
 	function submitChk(){

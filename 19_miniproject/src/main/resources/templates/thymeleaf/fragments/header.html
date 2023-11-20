@@ -21,13 +21,13 @@
 </script>
 </head>
 <body>
-    <header>
+    <header th:fragment="header" class="header">
 <!--    	<div>-->
 		
 		
 		
     		<img class="logo" th:src="@{/img/AccountBook.png}" />
-    		<h2>(User)의 가계부</h2>
+    		<h2>(User)의 지갑</h2>
     		<nav>
     			<ul>
     				<li class="active"><a href="#">Home</a></li>
