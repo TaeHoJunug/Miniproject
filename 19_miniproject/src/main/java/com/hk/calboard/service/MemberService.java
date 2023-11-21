@@ -1,6 +1,7 @@
 package com.hk.calboard.service;
 
 import org.springframework.beans.factory.annotation.Autowired;import org.springframework.data.convert.DtoInstantiatingConverter;
+//import org.springframework.data.domain.Window;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -30,7 +31,7 @@ public class MemberService {
 		mdto.setName(addUserCommand.getName());
 		
 		//password암호화하여 저장하자
-//		mdto.setPassword(passwordEncoder.encode(addUserCommand.getPassword()));
+		mdto.setPassword(addUserCommand.getPassword());
 //		mdto.setPassword(addUserCommand.equals(mdto.getPassword()));
 		
 		
@@ -48,16 +49,17 @@ public class MemberService {
 			           ,HttpServletRequest request
 			           ,Model model) {
 		MemberDto dto = memberMapper.loginUser(loginCommand.getId());
-		String path="home";
+		String path="schedule/calendar";
 		if(dto!=null) {
 			//로그인 폼에서 입력받은 패스워드값과 DB에 암호화된 패스워드 비교22
 //			if(passwordEncoder.matches(loginCommand.getPassword()
 //					                  , dto.getPassword())) {
-			if(loginCommand.equals(dto.getPassword())) {
+			if(loginCommand.getPassword().equals(dto.getPassword())) {
 				
 				System.out.println("패스워드 같음: 회원이 맞음");
 				//session객체에 로그인 정보 저장
 				request.getSession().setAttribute("mdto", dto);
+//				Window.location.href = "main.html";
 				return path;
 			}else {
 				System.out.println("패스워드 틀림");

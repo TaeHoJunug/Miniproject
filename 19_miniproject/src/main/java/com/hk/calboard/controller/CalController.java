@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,7 +30,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping(value="/schedule")
+@RequestMapping(value="/schedule",method=RequestMethod.GET)
 public class CalController {
 	//log를 원하는 위치에 설정하여 디버깅 하기
 	private static final Logger logger=LoggerFactory.getLogger(CalController.class);
@@ -37,7 +38,7 @@ public class CalController {
 	@Autowired
 	private ICalService calService;
 	
-	@GetMapping(value="/calendar")
+	@PostMapping(value="/calendar")
 	public String calendar(Model model, HttpServletRequest request) {
 		logger.info("달력보기"); 
 		
@@ -61,7 +62,7 @@ public class CalController {
 		Map<String, Integer>map=calService.makeCalendar(request);
 		model.addAttribute("calMap", map);
 		
-		return "thymeleaf/calboard/calendar";
+		return "board/calendar";
 	}
 	
 	@GetMapping(value = "/addCalBoardForm")
@@ -70,7 +71,7 @@ public class CalController {
 		System.out.println(insertCalCommand);
 		//addCalBoardfForm 페이지에서 유효값 처리를 위해 insertCalCommand 받고 있기때문에
 		model.addAttribute("insertCalCommand", insertCalCommand);
-		return "thymeleaf/calboard/addCalBoardForm";
+		return "board/addCalBoardForm";
 	}
 	
 	@PostMapping(value = "/addCalBoard")
@@ -80,7 +81,7 @@ public class CalController {
 		System.out.println(insertCalCommand);
 		if(result.hasErrors()) {
 			System.out.println("글을 모두 입력해야 함");
-			return "thymeleaf/calboard/addCalBoardForm";
+			return "board/addCalBoardForm";
 		}
 		
 		calService.insertCalBoard(insertCalCommand);
@@ -119,7 +120,7 @@ public class CalController {
 		List<CalDto> list= calService.calBoardList(id, yyyyMMdd);
 		model.addAttribute("list", list);
 		
-		return "thymeleaf/calboard/calBoardList";
+		return "board/calBoardList";
 	}
 	
 	@PostMapping(value = "/calMulDel")
@@ -144,7 +145,7 @@ public class CalController {
 					       +Util.isTwo(map.get("date"));
 			List<CalDto> list= calService.calBoardList(id, yyyyMMdd);
 			model.addAttribute("list", list);
-			return "thymeleaf/calboard/calBoardList";
+			return "board/calBoardList";
 		}
 		Map<String,String[]>map=new HashMap<>();
 		map.put("seqs", deleteCalCommand.getSeq());
@@ -185,7 +186,7 @@ public class CalController {
 		          .setMin(Integer.parseInt(dto.getMdate().substring(10)));
 		model.addAttribute("updateCalCommand", updateCalCommand);
 		
-		return "thymeleaf/calboard/calBoardDetail";
+		return "board/calBoardDetail";
 	}
 	
 	@PostMapping(value = "/calBoardUpdate")
@@ -196,7 +197,7 @@ public class CalController {
 		
 		if(result.hasErrors()) {
 			System.out.println("수정할 목록을 확인하세요");
-			return "thymeleaf/calboard/calBoardDetail";
+			return "board/calBoardDetail";
 		}
 		
 		calService.calBoardUpdate(updateCalCommand);

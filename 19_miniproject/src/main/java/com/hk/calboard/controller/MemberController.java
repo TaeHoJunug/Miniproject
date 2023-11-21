@@ -90,7 +90,6 @@ public class MemberController {
 			System.out.println("로그인 유효값 오류");
 			return "member/login";
 		}
-		
 		String path=memberService.login(loginCommand, request, model);
 		
 		return path;
