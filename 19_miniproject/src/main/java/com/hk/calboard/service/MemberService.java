@@ -1,7 +1,7 @@
 package com.hk.calboard.service;
 
 import org.springframework.beans.factory.annotation.Autowired;import org.springframework.data.convert.DtoInstantiatingConverter;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -20,8 +20,8 @@ public class MemberService {
 	
 	@Autowired
 	private MemberMapper memberMapper;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 	
 	public boolean addUser(AddUserCommand addUserCommand) {
 		
@@ -31,7 +31,7 @@ public class MemberService {
 		
 		//password암호화하여 저장하자
 //		mdto.setPassword(passwordEncoder.encode(addUserCommand.getPassword()));
-		mdto.setPassword(addUserCommand.equals(mdto.getPassword()));
+//		mdto.setPassword(addUserCommand.equals(mdto.getPassword()));
 		
 		
 		mdto.setEmail(addUserCommand.getEmail());
@@ -51,8 +51,10 @@ public class MemberService {
 		String path="home";
 		if(dto!=null) {
 			//로그인 폼에서 입력받은 패스워드값과 DB에 암호화된 패스워드 비교22
-			if(passwordEncoder.matches(loginCommand.getPassword()
-					                  , dto.getPassword())) {
+//			if(passwordEncoder.matches(loginCommand.getPassword()
+//					                  , dto.getPassword())) {
+			if(loginCommand.equals(dto.getPassword())) {
+				
 				System.out.println("패스워드 같음: 회원이 맞음");
 				//session객체에 로그인 정보 저장
 				request.getSession().setAttribute("mdto", dto);
