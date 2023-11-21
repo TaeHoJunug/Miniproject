@@ -59,8 +59,8 @@ public class MemberService {
 				System.out.println("패스워드 같음: 회원이 맞음");
 				//session객체에 로그인 정보 저장
 				request.getSession().setAttribute("mdto", dto);
-//				Window.location.href = "main.html";
 				return path;
+				
 			}else {
 				System.out.println("패스워드 틀림");
 				model.addAttribute("msg", "패스워드를 확인하세요");
