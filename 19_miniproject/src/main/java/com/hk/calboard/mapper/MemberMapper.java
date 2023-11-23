@@ -13,6 +13,8 @@ public interface MemberMapper {
 	
 	public MemberDto loginUser(String id);
 	
+	public MemberDto getUser(String id);
+	
 }
 
 

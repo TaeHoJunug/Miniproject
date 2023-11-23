@@ -17,6 +17,11 @@
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
+	<select id="getUser" parameterType="String" resultType="memberDto">
+		SELECT MEMBERID, ID, NAME, PASSWORD, EMAIL, ADDRESS, ROLE
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
 </mapper>
 
 

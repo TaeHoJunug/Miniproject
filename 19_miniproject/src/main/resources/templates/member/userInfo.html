@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{thymeleaf/layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+</script>
+<style type="text/css">
+	.container{
+		height : auto;
+  		min-height: 100%;
+	}
+	body {
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        background-color:#F5F5F5;
+      }
+    .put {
+    	width: 100%;
+    	height:200px;
+    	text-align:center;
+    	
+      }
+	.table{
+		background-color:white;
+		margin: auto;
+	}
+	img.profile{
+ 	  width : 174px;
+ 		height: 164px; 
+	}	
+	
+	td{
+		padding-bottom:30px;
+	}
+	
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+<div id="container">
+	<div class="put" style="width:13%;float:left;">
+		<table>
+			<tr>
+				<td>
+					<a href="/user/updateUser">정보수정</a>      
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="/user/delete">회원탈퇴</a>  
+				</td>     
+			</tr>
+		</table>
+	</div>
+	<div class="table" style="width:85%;float:right;">
+		<tr>
+			<img class="profile" th:src="@{/img/profile.png}"/>
+			<label type="text" id="text">회원님 안녕하십니까</label>
+		</tr>
+	</div>	
+</div>
+</body>
+</html>
