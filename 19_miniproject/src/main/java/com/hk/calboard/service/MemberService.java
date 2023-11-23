@@ -51,7 +51,7 @@ public class MemberService {
 			           ,HttpServletRequest request
 			           ,Model model) {
 		MemberDto dto = memberMapper.loginUser(loginCommand.getId());
-		String path="schedule/calendar";
+		String path="redirect:/schedule/calendar";
 		if(dto!=null) {
 			//로그인 폼에서 입력받은 패스워드값과 DB에 암호화된 패스워드 비교22
 //			if(passwordEncoder.matches(loginCommand.getPassword()
