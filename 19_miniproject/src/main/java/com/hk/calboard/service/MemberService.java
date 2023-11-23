@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;import org.springframework.data.convert.DtoInstantiatingConverter;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.data.domain.Window;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 
 import com.hk.calboard.command.AddUserCommand;
 import com.hk.calboard.command.LoginCommand;
+import com.hk.calboard.command.UpdateUserCommand;
 import com.hk.calboard.dtos.MemberDto;
 import com.hk.calboard.mapper.MemberMapper;
 import com.hk.board.status.RoleStatus;
@@ -78,13 +80,11 @@ public class MemberService {
 		return path;
 	}
 	
-	
 	public MemberDto getUser(String id) {
 		
 		return memberMapper.getUser(id);
 	}
 	
-
 }
 
 

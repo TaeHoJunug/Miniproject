@@ -4,11 +4,11 @@
 <mapper namespace="com.hk.calboard.mapper.CalMapper">
 	<insert id="insertCalBoard" parameterType="CalDto">
 		INSERT INTO calboard
-        VALUES (NULL,#{id},#{title},#{content},#{mdate},SYSDATE())
+        VALUES (NULL,#{id},#{title},#{content},#{mdate},SYSDATE(),#{money})
 	</insert>
 	
 	<select id="calBoardList" parameterType="Map" resultType="CalDto">
-	    SELECT seq, id, title, content,mdate,regdate
+	    SELECT seq, id, title, content,mdate,regdate,money
 		FROM calboard
 		WHERE SUBSTRING(mdate,1,8) = #{yyyyMMdd}
 		AND id=#{id}
@@ -16,7 +16,7 @@
 	
 	<select id="calBoardDetail" parameterType="int" 
 	                            resultType="CalDto">
-		SELECT seq,id,title,content,mdate,regdate
+		SELECT seq,id,title,content,mdate,regdate,money
 		FROM calboard
 		WHERE seq=#{seq}
 	</select>
@@ -51,6 +51,7 @@
 		SELECT COUNT(*) FROM calboard
 		WHERE id=#{id} AND SUBSTR(mdate,1,8)=#{yyyyMMdd}
 	</select>
+	
 </mapper>
 
 

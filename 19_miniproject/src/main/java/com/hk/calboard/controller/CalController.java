@@ -79,6 +79,7 @@ public class CalController {
 							  BindingResult result)throws Exception {
 		logger.info("일정추가하기");
 		System.out.println(insertCalCommand);
+		
 		if(result.hasErrors()) {
 			System.out.println("글을 모두 입력해야 함");
 			return "board/addCalBoardForm";

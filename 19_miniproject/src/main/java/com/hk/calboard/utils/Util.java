@@ -43,6 +43,7 @@ public class Util {
 		return str;
 	}
 	
+	
 	//일일별 일정 목록 구하는 기능
 	public static String getCalViewList(int i, List<CalDto> clist) {
 		String d=isTwo(i+"");// 1 --> "01" 2자리로 변환

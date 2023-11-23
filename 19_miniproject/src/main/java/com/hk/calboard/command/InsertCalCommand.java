@@ -15,10 +15,12 @@ public class InsertCalCommand {
 	
 	@NotBlank(message="아이디를 입력하세여")// 문자열만가능
 	private String id;
-	@NotBlank(message="제목을 입력하세여")// 문자열만가능
+	@NotBlank(message="가격을 입력하세여")// 문자열만가능
 	private String title;
 	@NotBlank(message="내용을 입력하세여")// 문자열만가능
 	private String content;
+	@NotBlank(message = "지불방식")
+	private String money;
 	
 	//mdate
 	@NotNull(message="년도를 입력하세여")
@@ -33,13 +35,9 @@ public class InsertCalCommand {
 	private int min;
 	
 	
-	
-	
 	public int getSeq() {
 		return seq;
 	}
-	
-	
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
@@ -93,22 +91,33 @@ public class InsertCalCommand {
 	}
 	
 	
+	public String getMoney() {
+		return money;
+	}
+	public void setMoney(String money) {
+		this.money = money;
+	}
 	public InsertCalCommand() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "InsertCalCommand [seq=" + seq + ", id=" + id + ", title=" + title + ", content=" + content + ", money="
+				+ money + ", year=" + year + ", month=" + month + ", date=" + date + ", hour=" + hour + ", min=" + min
+				+ "]";
+	}
 	public InsertCalCommand(int seq, @NotBlank(message = "아이디를 입력하세여") String id,
-			@NotBlank(message = "제목을 입력하세여") String title, @NotBlank(message = "내용을 입력하세여") String content,
-			@NotNull(message = "년도를 입력하세여") int year, @NotNull(message = "월을 입력하세여") int month,
-			@NotNull(message = "일을 입력하세여") int date, @NotNull(message = "시간을 입력하세여") int hour,
-			@NotNull(message = "분을 입력하세여") int min) {
+			@NotBlank(message = "가격을 입력하세여") String title, @NotBlank(message = "내용을 입력하세여") String content,
+			@NotBlank(message = "지불방식") String money, @NotNull(message = "년도를 입력하세여") int year,
+			@NotNull(message = "월을 입력하세여") int month, @NotNull(message = "일을 입력하세여") int date,
+			@NotNull(message = "시간을 입력하세여") int hour, @NotNull(message = "분을 입력하세여") int min) {
 		super();
 		this.seq = seq;
 		this.id = id;
 		this.title = title;
 		this.content = content;
+		this.money = money;
 		this.year = year;
 		this.month = month;
 		this.date = date;
@@ -117,11 +126,7 @@ public class InsertCalCommand {
 	}
 	
 	
-	@Override
-	public String toString() {
-		return "InsertCalCommand [seq=" + seq + ", id=" + id + ", title=" + title + ", content=" + content + ", year="
-				+ year + ", month=" + month + ", date=" + date + ", hour=" + hour + ", min=" + min + "]";
-	}
+	
 	
 	
 }

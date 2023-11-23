@@ -9,13 +9,23 @@
 	
 </style>
 <script type="text/javascript">
-
+  	var mainTable = document.getElementById('container');
+    var mainTableBody = mainTable.getElementsByTagName('title')[0];
+    var rowCount = mainTableBody.rows.length;
+ 
+    function addRow() {
+      rowCount = rowCount + 1;
+      // refChild null이어도 마지막 리스트에 추가
+      mainTableBody.insertBefore(mainTableBody.rows[0].cloneNode(true), mainTable.rows[rowCount]); 
+ 
+      console.log(rowCount);
+    }
 </script>
 </head>
 <body>
 <div layout:fragment="content">
 <div id="container">
-	<h1>일정 추가하기</h1>
+	<h1>소비내역 추가하기</h1>
 	<form th:action="@{/schedule/addCalBoard}" method="post" 
 											   th:object="${insertCalCommand}">
 		<table class="table">
@@ -74,18 +84,25 @@
 					</select>분
 				</td>
 			</tr>
+			
 			<tr>
-				<th>제목</th>
+				<th>비용</th>
 				<td>
-					<input type="text" name="title" th:field="*{title}"/>
+					<input placeholder="￦" type="number" name="title" th:field="*{title}"/>
+						<select name="money" th:field="*{money}">
+							<option value="지출">지출</option>
+							<option value="수입">수입</option>
+						</select>
+				<button type="button" class="btn btn-default" onclick="addRow();">+</button>
 					<span class="errorField" th:if="${#fields.hasErrors('title')}" 
 											 th:errors="*{title}"></span>
 				</td>
 			</tr>
+			
 			<tr>
 				<th>내용</th>
 				<td>
-					<textarea rows="10" cols="60" name="content" th:field="*{content}"></textarea>
+					<textarea rows="1" cols="60" name="content" th:field="*{content}"></textarea>
 					<span class="errorField" th:if="${#fields.hasErrors('content')}" 
 											 th:errors="*{content}"></span>
 				</td>
@@ -103,7 +120,6 @@
 </div>
 </body>
 </html>
-
 
 
 

@@ -38,8 +38,9 @@
 				<tr>
 					<th><input type="checkbox" name="all" onclick="allSel(this.checked)"/></th>
 					<th>일정</th>
-					<th>제목</th>
+					<th>상세내역</th>
 					<th>작성일</th>
+					<th>지출/수입</th>
 				</tr>
 				<th:block th:if="${#lists.isEmpty(list)}">
 					<tr>
@@ -54,10 +55,11 @@
 							<a th:href="@{/schedule/calBoardDetail(seq=${dto.seq})}"  th:text="${dto.title}"></a>
 						</td>
 						<td th:text="${#dates.format(dto.regdate, 'yyyy-MM-dd')}"></td>
+						<td th:text="${dto.money}"></td>
 					</tr>				
 				</th:block>
 				<tr>
-					<td colspan="4">
+					<td colspan="5">
 						<button type="submit" title="일정삭제" class="btn btn-default" >
 						  <span class="glyphicon glyphicon-trash" ></span>
 						</button>

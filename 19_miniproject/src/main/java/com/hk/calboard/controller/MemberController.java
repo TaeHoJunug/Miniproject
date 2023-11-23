@@ -88,6 +88,7 @@ public class MemberController {
 		model.addAttribute("loginCommand", new LoginCommand());
 		return "member/login";
 	}
+	
 	//로그인 실행
 	@PostMapping(value = "/login")
 	public String login(@Validated LoginCommand loginCommand
@@ -110,8 +111,6 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	
-
 	//나의 정보 조회
 	@GetMapping(value="/mypage")
 	public String mypage() {
