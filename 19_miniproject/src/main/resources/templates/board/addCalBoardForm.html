@@ -9,7 +9,17 @@
 	
 </style>
 <script type="text/javascript">
+  	var mainTable = document.getElementById('container');
+    var mainTableBody = mainTable.getElementsByTagName('title')[0];
+    var rowCount = mainTableBody.rows.length;
  
+    function addRow() {
+      rowCount = rowCount + 1;
+      // refChild null이어도 마지막 리스트에 추가
+      mainTableBody.insertBefore(mainTableBody.rows[0].cloneNode(true), mainTable.rows[rowCount]); 
+ 
+      console.log(rowCount);
+    }
 </script>
 </head>
 <body>
@@ -74,6 +84,7 @@
 					</select>분
 				</td>
 			</tr>
+			
 			<tr>
 				<th>비용</th>
 				<td>
@@ -82,10 +93,12 @@
 							<option value="지출">지출</option>
 							<option value="수입">수입</option>
 						</select>
+				<button type="button" class="btn btn-default" onclick="addRow();">+</button>
 					<span class="errorField" th:if="${#fields.hasErrors('title')}" 
 											 th:errors="*{title}"></span>
 				</td>
 			</tr>
+			
 			<tr>
 				<th>내용</th>
 				<td>

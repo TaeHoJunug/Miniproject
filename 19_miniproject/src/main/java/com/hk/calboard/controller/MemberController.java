@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hk.calboard.command.AddUserCommand;
 import com.hk.calboard.command.LoginCommand;
 import com.hk.calboard.command.UpdateUserCommand;
+import com.hk.calboard.dtos.MemberDto;
 import com.hk.calboard.service.MemberService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -104,15 +106,23 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//나의 정보 조회
-	
-	//나의 정보 수정
-	@PostMapping(value = "/update")
-	public String update(HttpServletRequest request) {
-		
-		
-		return null;
-	}
+	   //나의 정보 조회
+	   @GetMapping(value="/mypage")
+	   public String mypage() {
+	      System.out.println("마이페이지 접속");
+	      return "member/userInfo";
+	   }
+	   
+	   //나의 정보 수정
+	   @GetMapping(value="/updateUser")
+	   public String updateUser(Model model,HttpServletRequest request) {
+	      HttpSession session=(HttpSession) request.getSession();
+	      MemberDto mdto=(MemberDto)session.getAttribute("mdto");
+	      MemberDto dto=memberService.getUser(mdto.getId());
+	      model.addAttribute("dto",dto);
+	      System.out.println("회원수정 접속");
+	      return "member/updateUser";
+	   }
 		
 }
 

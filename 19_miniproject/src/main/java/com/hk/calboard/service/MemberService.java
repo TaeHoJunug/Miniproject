@@ -105,6 +105,10 @@ public class MemberService {
 		return path;
 		
 	}
+	
+	   public MemberDto getUser(String id) {
+		      return memberMapper.getUser(id);
+		   }
 }
 
 
