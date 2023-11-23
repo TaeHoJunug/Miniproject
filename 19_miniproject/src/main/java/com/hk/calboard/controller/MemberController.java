@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.calboard.command.AddUserCommand;
 import com.hk.calboard.command.LoginCommand;
+import com.hk.calboard.command.UpdateUserCommand;
 import com.hk.calboard.service.MemberService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -80,6 +81,7 @@ public class MemberController {
 		model.addAttribute("loginCommand", new LoginCommand());
 		return "member/login";
 	}
+	
 	//로그인 실행
 	@PostMapping(value = "/login")
 	public String login(@Validated LoginCommand loginCommand
@@ -105,7 +107,13 @@ public class MemberController {
 	//나의 정보 조회
 	
 	//나의 정보 수정
-	
+	@PostMapping(value = "/update")
+	public String update(HttpServletRequest request) {
+		
+		
+		return null;
+	}
+		
 }
 
 
