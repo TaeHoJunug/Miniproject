@@ -12,7 +12,7 @@ public interface MemberMapper {
 	public String idChk(String id);
 	
 	public MemberDto loginUser(String id);
-
+	
 	public MemberDto getUser(String id);
 	
 }
