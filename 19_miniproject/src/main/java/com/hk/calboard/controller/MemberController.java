@@ -86,6 +86,7 @@ public class MemberController {
 	@GetMapping(value = "/login")
 	public String loginForm(Model model) {
 		model.addAttribute("loginCommand", new LoginCommand());
+		System.out.println("로그인폼 이동");
 		return "member/login";
 	}
 	
