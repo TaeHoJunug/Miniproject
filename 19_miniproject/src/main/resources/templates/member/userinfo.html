@@ -36,7 +36,20 @@
    td{
       padding-bottom:30px;
    }
-   
+       .btn{
+       	  color:white;
+          width: 100%;
+          padding: 10px;
+		  border: none;
+		  border-radius: 5px;
+		  font-weight: bold;
+		  background-color: #22aee5;
+		  cursor: pointer;
+		  text-align:center;	
+  }
+    a.btn:link { color: white; text-decoration: none;}
+ 	a.btn:visited { color: white; text-decoration: none;}
+ 	a.btn:hover { color: black; text-decoration: underline;} 
 </style>
 </head>
 <body>
@@ -46,12 +59,12 @@
       <table>
          <tr>
             <td>
-               <a href="/user/updateUser">정보수정</a>      
+               <a class="btn" href="/user/updateUser">정보수정</a>      
             </td>
          </tr>
          <tr>
             <td>
-               <a href="/user/delete">회원탈퇴</a>  
+               <a class="btn" href="/user/delete">회원탈퇴</a>  
             </td>     
          </tr>
       </table>

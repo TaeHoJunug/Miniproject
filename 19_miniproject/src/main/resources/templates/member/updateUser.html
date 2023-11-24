@@ -6,59 +6,85 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-
+$(function(){
+   // on("eventType", function(){})
+   $("input[name=id]").on("keyup", function(){
+      var id=$(this).val(); // id 입력박스에 입력한 id값 가져오기 value -> val()
+      $.ajax({
+         url:"/user/idChk",
+         method:"get",
+         dataType:"json",
+         async:false,
+         data:{"id":id},
+         success:function(data){
+            if(data.id!=null){ // 사용할 수 없는 id
+               $("#idChk").attr("class", "n").css("color","red").text("사용못함ㅋ");
+            }else{  // 사용할 수 있는 id
+               $("#idChk").attr("class", "y").css("color","red").text("사용가능ㅇㅇ");
+            }
+         },
+         error:function(e){
+            alert("통신오류"+e);
+         }
+      });
+   });
+});
 </script>
 </head>
 <body>
+<div layout:fragment="content">
 <div id="container">
-	<div class="main">
-		<div class="lead">
-			<span>${ldto.id}[${ldto.role}]님이 로그인 함</span> |
-			<span><a href="userController.jsp?command=myinfo&id=${ldto.id}">나의정보</a></span> |
-			<span><a href="userController.jsp?command=logout">로그아웃</a></span>
-		</div>
-		<div class="contents">
-			<h1>사용자 페이지</h1>
-			<h2>나의 정보</h2>
-			<div id="myinfo">
-				<form action="/user/updateUser" method="post">
-					<input type="hidden" name="id" value="${ldto.id}"/>
-					<table class="table">
-						<tr>
-							<th>아이디</th>
-							<td>${dto.id}</td>
-						</tr>
-						<tr>
-							<th>이름</th>
-							<td>${dto.name}</td>
-						</tr>
-						<tr>
-							<th>등급</th>
-							<td>${dto.role}</td>
-						</tr>
-						<tr>
-							<th>주소</th>
-							<td>
-								<input type="text" name="address" value="${dto.address}"/>
-							</td>
-						</tr>
-						<tr>
-							<th>이메일</th>
-							<td>
-								<input type="email" name="email" value="${dto.email}"/>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<button type="submit">수정</button>
-								<button type="button" onclick="delUser('${dto.id}')">탈퇴</button>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</div>
-		</div>
-	</div>
+   <h1>회원정보수정</h1>
+</div>
+<div id="container">
+   <div class="main">
+      <div class="lead">
+         <span>님이 로그인 함</span> |
+         <span><a href="userController.jsp?command=myinfo&id=${ldto.id}">나의정보</a></span> |
+         <span><a href="userController.jsp?command=logout">로그아웃</a></span>
+      </div>
+      <div class="contents">
+         <h2>나의 정보</h2>
+         <div id="myinfo">
+            <form action="/user/updateUser" method="post" >
+               <table class="table">
+                  <tr>
+                     <th>아이디</th>
+                     <td>
+                        ${dto.id}   
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>이름</th>
+                     <td>${dto.name}</td>
+                  </tr>
+                  <tr>
+                     <th>등급</th>
+                     <td>${dto.role}</td>
+                  </tr>
+                  <tr>
+                     <th>주소</th>
+                     <td>
+                        <input type="text" name="address" value="${dto.address}"/>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>이메일</th>
+                     <td>
+                        <input type="email" name="email" value="${dto.email}"/>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td colspan="2">
+                        <button type="submit">수정</button>
+                        <button type="button" onclick="delUser('${dto.id}')">탈퇴</button>
+                     </td>
+                  </tr>
+               </table>
+            </form>
+         </div>
+      </div>
+   </div>
 </div>
 </body>
 </html>
