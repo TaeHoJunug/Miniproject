@@ -31,9 +31,36 @@ $(function(){
 });
 </script>
 <style type="text/css">
-        #container {
-            background-color: #F5F5F5;
+
+		body{
+			background-color:#F5F5F5;
+		}
+        #container{
+              width: 600px;
+			  height: 600px;
+			  display: grid;
+			  justify-items: center;
+			  align-items: center;
+			  background-color: #F5F5F5;
+			  border-radius: 7px;
         }
+  	button.btn:link { color: red; text-decoration: none;}
+ 	button.btn:visited { color: white; text-decoration: none;}
+ 	button.btn:hover { color: #22aee5; text-decoration: underline;}
+ 
+       .btn{
+          width: 50%;
+		  padding: 7px;
+		  margin-left:30%; 
+   		  margin-right:30%;
+		  border: none;
+		  border-radius: 5px;
+		  color: white;
+		  font-weight: bold;
+		  background-color: #3a3a3a;
+		  cursor: pointer;
+		  outline: none;
+  }
 </style>
 </head>
 <body>
@@ -80,7 +107,6 @@ $(function(){
                   <tr>
                      <td colspan="2">
                         <button class="btn" type="submit">수정</button>
-                        <button class="btn" type="button" onclick="delUser('${dto.id}')">탈퇴</button>
                      </td>
                   </tr>
                </table>
