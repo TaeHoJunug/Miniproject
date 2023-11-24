@@ -5,23 +5,26 @@ import org.hibernate.validator.constraints.Length;
 import jakarta.validation.constraints.NotBlank;
 
 public class UpdateUserCommand {
-	
-	@NotBlank(message="아이디를 입력하세요")
-	private String id;
-	@NotBlank(message="이름을 입력하세요")
-	private String name;
-	@NotBlank(message="비밀번호를 입력하세요")
-	@Length(min= 8, max=16,message="8자리이상,16자리 이하로입력하세요")
-	private String password;
-	@NotBlank(message="이메일을 입력하세요")
-	private String email;
-	@NotBlank(message="주소를 입력하세요")
-	private String address;
 	 
 	
-	public UpdateUserCommand() {
-		super();
-	}
+   
+   @NotBlank(message="아이디를 입력하세요")
+   private String id;
+   @NotBlank(message="이름을 입력하세요")
+   private String name;
+   @NotBlank(message="비밀번호를 입력하세요")
+   @Length(min= 8, max=16,message="8자리이상,16자리 이하로입력하세요")
+   private String password;
+   @NotBlank(message="이메일을 입력하세요")
+   private String email;
+   @NotBlank(message="주소를 입력하세요")
+   private String address;
+    
+   
+   public UpdateUserCommand() {
+      super();
+   }
+
 
 
 	public UpdateUserCommand(@NotBlank(message = "아이디를 입력하세요") String id, @NotBlank(message = "이름을 입력하세요") String name,
@@ -36,83 +39,49 @@ public class UpdateUserCommand {
 	}
 
 
-	@Override
-	public String toString() {
-		return "UpdateUser [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email
-				+ ", address=" + address + "]";
-	}
+   public void setId(String id) {
+      this.id = id;
+   }
 
 
-	public String getId() {
-		return id;
-	}
+   public String getName() {
+      return name;
+   }
 
 
-	public void setId(String id) {
-		this.id = id;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
 
-	public String getName() {
-		return name;
-	}
+   public String getPassword() {
+      return password;
+   }
 
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setPassword(String password) {
+      this.password = password;
+   }
 
 
-	public String getPassword() {
-		return password;
-	}
+   public String getEmail() {
+      return email;
+   }
 
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+   public void setEmail(String email) {
+      this.email = email;
+   }
 
 
-	public String getEmail() {
-		return email;
-	}
+   public String getAddress() {
+      return address;
+   }
 
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-	public String getAddress() {
-		return address;
-	}
-
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	
-	
-	
-	
-	
-	
-
+   public void setAddress(String address) {
+      this.address = address;
+   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

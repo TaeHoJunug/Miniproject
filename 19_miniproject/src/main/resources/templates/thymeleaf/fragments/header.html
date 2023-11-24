@@ -21,22 +21,24 @@
 </script>
 </head>
 <body>
-    <header th:fragment="header" class="header">
-<!--    	<div>-->
-		
-		
-		
+    <header th:fragment="header" class="header">	
     		<img class="logo" th:src="@{/img/AccountBook.png}" />
-    		<h2>(User)의 지갑</h2>
+    		<h2>나의 지갑</h2>
     		<nav>
     			<ul>
-
+					<th:block th:if="${session.mdto==null}">	
+    				<li class="active"><a href="/user/login">Home</a></li>
+    				<li><a id="mypage" href="/user/mypage">Mypage</a></li>
+    				<li><a href="/">Login</a></li>
+    				</th:block>
+    				<th:block th:unless="${session.mdto==null}">
     				<li class="active"><a href="/schedule/calendar">Home</a></li>
     				<li><a id="mypage" href="/user/mypage">Mypage</a></li>
-    				<li><a href="#">Logout</a></li>
+    				<li><a href="/user/logout">Logout</a></li>
+    				</th:block>
+    				
     			</ul>
     		</nav>
-<!--    	</div>-->
     </header>
 </body>
 </html>

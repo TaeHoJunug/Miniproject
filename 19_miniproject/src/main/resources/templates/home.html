@@ -10,15 +10,44 @@
 </script>
 <style type="text/css">
 
+        body {
+       
+            background-color: #F5F5F5;
+        }
+        
+        #container{
+              width: 30%;
+			  height: 500px;
+			  display: grid;
+			  justify-items: center;
+			  align-items: center;
+			  background-color: #F5F5F5;
+			  border-radius: 7px;
+        }
+
+       .butt{
+       	  color:white;
+          width: 100%;
+          padding: 10px;
+		  border: none;
+		  border-radius: 5px;
+		  font-weight: bold;
+		  background-color: #22aee5;
+		  cursor: pointer;
+		  text-align:center;	
+  }
+  	a.butt:link { color: red; text-decoration: none;}
+ 	a.butt:visited { color: white; text-decoration: none;}
+ 	a.butt:hover { color: white; text-decoration: underline;}
 </style>
 </head>
 <body>
 <div layout:fragment="content">
-<h1>로그인 선택 화면</h1>
+<div id="container">
    <th:block th:if="${session.mdto==null}">
       <p>
-         <a href="/user/login">로그인</a>
-         <a href="/user/addUser">회원가입</a>
+         <a class="butt" href="/user/login">로그인</a>
+         <a class="butt" href="/user/addUser">회원가입</a>
       </p>
    </th:block>
    <th:block th:unless="${session.mdto==null}">
@@ -28,7 +57,7 @@
          <a href="/user/logout">로그아웃</a>
       </p>
    </th:block>
-      <p><a href="/board/boardList">게시판</a></p>
+   </div>
 </div>
 </body>
 </html>

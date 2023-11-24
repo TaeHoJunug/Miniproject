@@ -20,9 +20,9 @@ $(function(){
          data:{"id":id},
          success:function(data){
             if(data.id!=null){ // 사용할 수 없는 id
-               $("#idChk").attr("class", "n").css("color","red").text("사용못함ㅋ");
+               $("#idChk").attr("class", "n").css("color","red").text("이미ID가 있습니다");
             }else{  // 사용할 수 있는 id
-               $("#idChk").attr("class", "y").css("color","red").text("사용가능ㅇㅇ");
+               $("#idChk").attr("class", "y").css("color","red").text("사용가능한 ID입니다");
             }
          },
          error:function(e){
@@ -44,6 +44,33 @@ $(function(){
 </script>
 <style type="text/css">
 
+		body{
+			background-color:#F5F5F5;
+		}
+        #container{
+              width: 100%;
+			  height: 600px;
+			  display: grid;
+			  justify-items: center;
+			  align-items: center;
+			  background-color: #F5F5F5;
+			  border-radius: 7px;
+        }
+   	input.btn:link { color: red; text-decoration: none;}
+ 	input.btn:visited { color: white; text-decoration: none;}
+ 	input.btn:hover { color: #22aee5; text-decoration: underline;}
+ 
+       .btn{
+          width: 100%;
+		  padding: 7px;
+		  border: none;
+		  border-radius: 5px;
+		  color: white;
+		  font-weight: bold;
+		  background-color: #3a3a3a;
+		  cursor: pointer;
+		  outline: none;
+  }
 </style>
 </head>
 <body>

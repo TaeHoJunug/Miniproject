@@ -107,7 +107,7 @@ header nav ul li:hover a:after {
 		background-color: #3c3c3c;
 		color:white;
 		line-height: 50px;
-		height: 200px;
+		height: 100px;
 		text-align: center;
 		position:fixed;
 		bottom:0px;
