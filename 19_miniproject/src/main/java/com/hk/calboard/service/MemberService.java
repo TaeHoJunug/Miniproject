@@ -14,6 +14,7 @@ import com.hk.calboard.command.AddUserCommand;
 import com.hk.calboard.command.LoginCommand;
 import com.hk.calboard.command.UpdateUserCommand;
 import com.hk.calboard.dtos.MemberDto;
+import com.hk.calboard.dtos.UserDto;
 import com.hk.calboard.mapper.MemberMapper;
 import com.hk.board.status.RoleStatus;
 
@@ -80,11 +81,10 @@ public class MemberService {
 		return path;
 	}
 	
-	public MemberDto getUser(String id) {
+	public MemberDto getUser(MemberDto dto) {
 		
-		return memberMapper.getUser(id);
-	}
-	
+		return memberMapper.getUser(dto);
+	}	
 }
 
 
