@@ -4,9 +4,13 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Component;
 
+import com.hk.calboard.command.InsertBoardCommand;
 import com.hk.calboard.dtos.CalDto;
+import com.hk.calboard.dtos.MemberDto;
+import com.hk.calboard.mapper.MemberMapper;
 
 @Component
 public class Util {
@@ -44,21 +48,31 @@ public class Util {
 	}
 	
 	
-	//일일별 일정 목록 구하는 기능
-	public static String getCalViewList(int i, List<CalDto> clist) {
+//	//일일별 일정 목록 구하는 기능
+	public static String getCalViewList(int i,List<CalDto> clist) {
 		String d=isTwo(i+"");// 1 --> "01" 2자리로 변환
 		String calList="";//"<p>title</p><p>title</p><p>title</p>"
 		for (int j = 0; j < clist.size(); j++) {
 			//한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
-			if(clist.get(j).getMdate().substring(6, 8).equals(d)) {
-				calList+="<p>"
+			if(clist.get(j).getMdate().substring(6, 8).equals(d)){
+				calList+="<p style='color:"+moneyColor(clist.get(j).getMoney())+";'>"
 						+(clist.get(j).getTitle().length()>7?
 						  clist.get(j).getTitle().substring(0, 7)+"..":
 						  clist.get(j).getTitle())	 
 						+"</p>";
+			
 			}
 		}
 		return calList;
+	}
+	public static String moneyColor(String money) {
+		String str="green";	
+		if(money.equals("수입")) {
+			 str="blue";
+		}else if(money.equals("지출")){
+			str="red";
+		}	
+		return str;
 	}
 }
 

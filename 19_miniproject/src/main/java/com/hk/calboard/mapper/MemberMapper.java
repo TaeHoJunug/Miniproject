@@ -15,8 +15,8 @@ public interface MemberMapper {
 	public MemberDto loginUser(String id);
 	
 	public MemberDto getUser(MemberDto dto);
-
 	
+	public String deletUser(MemberDto dto);//회원탈퇴
 }
 
 

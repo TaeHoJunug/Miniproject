@@ -37,10 +37,10 @@
 	</delete>
 	
 	<select id="calViewList" parameterType="Map" resultType="CalDto">
-	SELECT rn,seq, id,title,content, mdate, regdate	
+ 	SELECT rn,seq, id,title,content, mdate, regdate	,money <!--,minus ,sum , total -->
 	from	(SELECT ROW_NUMBER() over(PARTITION BY SUBSTR(mdate,1,8)
 		                             ORDER BY mdate) rn
-		       , seq, id,title,content, mdate, regdate
+		       , seq, id,title,content, mdate, regdate, money
 		    FROM calboard
 			 WHERE id=#{id} AND SUBSTR(mdate,1,6)=#{yyyyMM}
 			 ) cal

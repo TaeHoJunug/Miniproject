@@ -85,6 +85,10 @@ public class MemberService {
 		
 		return memberMapper.getUser(dto);
 	}	
+	
+	//wdasddadsadadadasdasds회원탈
+
+	
 }
 
 

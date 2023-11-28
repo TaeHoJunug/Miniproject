@@ -14,7 +14,6 @@
    a:link, a:visited, a:hover, a:active {
    		color:#333;
    		}
-    
 </style>
 <script type="text/javascript">
 
@@ -23,15 +22,16 @@
 <body>
     <header th:fragment="header" class="header">	
     		<img class="logo" th:src="@{/img/AccountBook.png}" />
-    		<h2>나의 지갑</h2>
     		<nav>
     			<ul>
-					<th:block th:if="${session.mdto==null}">	
+    				<th:block th:if="${session.mdto==null}">
+    				<h2>나의 지갑</h2>
     				<li class="active"><a href="/user/login">Home</a></li>
     				<li><a id="mypage" href="/user/mypage">Mypage</a></li>
     				<li><a href="/">Login</a></li>
     				</th:block>
     				<th:block th:unless="${session.mdto==null}">
+    				<h2><span class="name" th:text="${session.mdto.id}"></span>님의 지갑</h2>
     				<li class="active"><a href="/schedule/calendar">Home</a></li>
     				<li><a id="mypage" href="/user/mypage">Mypage</a></li>
     				<li><a href="/user/logout">Logout</a></li>

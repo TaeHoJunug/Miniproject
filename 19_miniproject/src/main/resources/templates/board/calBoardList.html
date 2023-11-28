@@ -52,10 +52,11 @@
 						<td><input type="checkbox" name="seq" th:value="${dto.seq}"/></td>
 						<td th:text="${@util.toDates(dto.mdate)}"></td>
 						<td> 
-							<a th:href="@{/schedule/calBoardDetail(seq=${dto.seq})}"  th:text="${dto.title}"></a>
+							<a th:href="@{/schedule/calBoardDetail(seq=${dto.seq})}"  th:text="${dto.title}"
+											th:style="'color:'+${@util.moneyColor(dto.money)}"></a>
 						</td>
 						<td th:text="${#dates.format(dto.regdate, 'yyyy-MM-dd')}"></td>
-						<td th:text="${dto.money}"></td>
+						<td th:text="${dto.money}" th:style="'color:'+${@util.moneyColor(dto.money)}"></td>
 					</tr>				
 				</th:block>
 				<tr>

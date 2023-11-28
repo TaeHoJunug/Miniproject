@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -23,9 +24,11 @@ import com.hk.calboard.command.LoginCommand;
 import com.hk.calboard.command.UpdateUserCommand;
 import com.hk.calboard.dtos.MemberDto;
 import com.hk.calboard.dtos.UserDto;
+import com.hk.calboard.mapper.MemberMapper;
 import com.hk.calboard.service.MemberService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -121,32 +124,25 @@ public class MemberController {
 		return "member/userInfo";
 	}
 	//나의 정보 수정
-		@GetMapping(value="/updateUser")
-		public String updateUser(Model model,HttpServletRequest request) {
-			HttpSession session=(HttpSession) request.getSession();
-			MemberDto mdto=(MemberDto)session.getAttribute("mdto");
-			MemberDto dto=memberService.getUser(mdto);
-			model.addAttribute("dto",dto);
-			System.out.println("회원수정 접속");
-			return "member/updateUser";
+	@GetMapping(value="/updateUser")
+	public String updateUser(Model model,HttpServletRequest request) {
+		HttpSession session=(HttpSession) request.getSession();
+		MemberDto mdto=(MemberDto)session.getAttribute("mdto");
+		MemberDto dto=memberService.getUser(mdto);
+		model.addAttribute("dto",dto);
+		System.out.println("회원수정 접속");
+		return "member/updateUser";
+	}
+		
+		//회원 탈퇴페이지 접속
+		@GetMapping("/deleteUser")
+		public String deleteUser(){
+
+			return "member/deleteUser"; //secession.jsp가 return되게
+
 		}
-//	//나의 정보 수정 페이지 이동
-//	@GetMapping(value = "/updateUser")
-//	public String updateForm(Model model) {
-//		
-//		model.addAttribute("updateUserCommand", new UpdateUserCommand());
-//		System.out.println("회원수정 접속");
-//		return "member/updateUser";
-//	}
-//	
-//	//나의 정보 수정 실행
-//	@PostMapping(value="/updateUser")
-//	public String getUser(@Validated UpdateUserCommand updateUserCommand, 
-//							  BindingResult result,	
-//							  Model model,
-//							  HttpServletRequest request) {
-//		return "member/updateUser";
-//	}
+		//회원탈퇴 진행
+
 }
 
 
