@@ -26,15 +26,15 @@
     			<ul>
     				<th:block th:if="${session.mdto==null}">
     				<h2>나의 지갑</h2>
-    				<li class="active"><a href="/user/login">Home</a></li>
-    				<li><a id="mypage" href="/user/mypage">Mypage</a></li>
+    				<li class="active"><a href="/">Home</a></li>
+    				<li><a id="mypage" href="/mypage">Mypage</a></li>
     				<li><a href="/">Login</a></li>
     				</th:block>
     				<th:block th:unless="${session.mdto==null}">
     				<h2><span class="name" th:text="${session.mdto.id}"></span>님의 지갑</h2>
     				<li class="active"><a href="/schedule/calendar">Home</a></li>
-    				<li><a id="mypage" href="/user/mypage">Mypage</a></li>
-    				<li><a href="/user/logout">Logout</a></li>
+    				<li><a id="mypage" href="/mypage">Mypage</a></li>
+    				<li><a href="/logout">Logout</a></li>
     				</th:block>
     				
     			</ul>

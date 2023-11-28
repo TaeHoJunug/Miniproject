@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/")
 public class MemberController {
 
 	@Autowired
@@ -88,7 +88,7 @@ public class MemberController {
 	   }
 	
 	//로그인 폼 이동
-	@GetMapping(value = "/login")
+	@GetMapping(value = "/")
 	public String loginForm(Model model) {
 		model.addAttribute("loginCommand", new LoginCommand());
 		System.out.println("로그인폼 이동");
@@ -96,7 +96,7 @@ public class MemberController {
 	}
 	
 	//로그인 실행
-	@PostMapping(value = "/login")
+	@PostMapping(value = "/")
 	public String login(@Validated LoginCommand loginCommand
 			           ,BindingResult result
 			           ,Model model
