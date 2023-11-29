@@ -46,15 +46,15 @@
 <div id="container">
    <th:block th:if="${session.mdto==null}">
       <p>
-         <a class="butt" href="/user/login">로그인</a>
-         <a class="butt" href="/user/addUser">회원가입</a>
+         <a class="butt" href="/login">로그인</a>
+         <a class="butt" href="/addUser">회원가입</a>
       </p>
    </th:block>
    <th:block th:unless="${session.mdto==null}">
       <p>
          <span th:text="${session.mdto.role}"></span>
          <span th:text="${session.mdto.id}"></span>
-         <a href="/user/logout">로그아웃</a>
+         <a href="/logout">로그아웃</a>
       </p>
    </th:block>
    </div>
