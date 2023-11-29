@@ -11,17 +11,29 @@
 	<select id="idChk" parameterType="String" resultType="String">
       SELECT ID FROM USERINFO WHERE ID = #{id}
     </select>
+    
+    <update id="pwChk" parameterType="memberDto" >
+     UPDATE MEMBER
+	 SET PASSWORD = #{password}
+	 WHERE ID = #{id}
+    </update>
 	
 	<select id="loginUser" parameterType="String" resultType="memberDto">
 		SELECT MEMBERID, ID, NAME, PASSWORD, EMAIL, ADDRESS, ROLE
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
+	
 	<select id="getUser" parameterType="String" resultType="memberDto">
 		SELECT MEMBERID, ID, NAME, PASSWORD, EMAIL, ADDRESS, ROLE
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
+	
+	<delete id="delUser" parameterType="String" > 
+	 DELETE FROM MEMBER 
+	 WHERE ID = #{id}
+	</delete>
 </mapper>
 
 

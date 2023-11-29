@@ -6,29 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-$(function(){
-   // on("eventType", function(){})
-   $("input[name=id]").on("keyup", function(){
-      var id=$(this).val(); // id 입력박스에 입력한 id값 가져오기 value -> val()
-      $.ajax({
-         url:"/user/idChk",
-         method:"get",
-         dataType:"json",
-         async:false,
-         data:{"id":id},
-         success:function(data){
-            if(data.id!=null){ // 사용할 수 없는 id
-               $("#idChk").attr("class", "n").css("color","red").text("사용못함ㅋ");
-            }else{  // 사용할 수 있는 id
-               $("#idChk").attr("class", "y").css("color","red").text("사용가능ㅇㅇ");
-            }
-         },
-         error:function(e){
-            alert("통신오류"+e);
-         }
-      });
-   });
-});
+
 </script>
 <style type="text/css">
 
@@ -65,59 +43,45 @@ $(function(){
 </head>
 <body>
 <div layout:fragment="content">
-	<div id="container">
-	   <h1>회원정보수정</h1>
-	</div>
 <div id="container">
    <div class="main">
+   <h1>회원정보수정<h1>
          <h2>나의 정보</h2>
-            <form action="/user/updateUser" method="post" >
+            <form action="/user/pwChk" method="post" th:object="${updateUserCommand}" >
                <table class="table">
                   <tr>
                      <th>아이디</th>
                      <td>
-                     	<input type="text" name="id" th:value="${dto.id}" readonly="readonly"/>
+                     	<input type="text" name="id" th:value="${dto.id}" readonly="readonly" class="form-control" />
                      </td>
                   </tr>
                   <tr>
                      <th>이름</th>
                      <td>
-                     	<input type="text" name="name" th:value="${dto.name}" readonly="readonly"/>
+                     	<input type="text" name="name" th:value="${dto.name}" readonly="readonly" class="form-control" />
                      </td>
                   </tr>
                   <tr>
                      <th>비밀번호</th>
                      <td>
-                     	<input type="text" name="password" th:value="${dto.password}" />
-                     </td>
-                  </tr>
-                  <tr>
-                     <th>비밀번호 확인</th>
-                     <td>
-                     	<input type="text" name="password" th:value="${dto.password}" />
-                     </td>
-                  </tr>
-                  <tr>
-                     <th>이름</th>
-                     <td>
-                     	<input type="text" name="password" th:value="${dto.password}" />
+                     	<input type="password" name="password"  placeholder="변경할 비밀번호 입력" class="form-control"  />
                      </td>
                   </tr>
                   <tr>
                      <th>주소</th>
                      <td>
-                        <input type="text" name="address" value="${dto.address}"/>
+                        <input type="text" name="email" th:value="${dto.email}" readonly="readonly" class="form-control" />
                      </td>
                   </tr>
                   <tr>
                      <th>이메일</th>
                      <td>
-                        <input type="text" name="email" th:value="${dto.email}" readonly="readonly"/>
+                        <input type="text" name="address" th:value="${dto.address}" readonly="readonly" class="form-control" />
                      </td>
                   </tr>
                   <tr>
                      <td colspan="2">
-                        <button type="submit">수정</button>
+                        <input type="submit" value="수정" class="btn"/>
                      </td>
                   </tr>
                </table>

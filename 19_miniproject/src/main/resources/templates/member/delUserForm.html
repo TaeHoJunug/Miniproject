@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{thymeleaf/layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+</script>
+<style type="text/css">
+
+		body{
+			background-color:#F5F5F5;
+		}
+        #container{
+              width: 600px;
+			  height: 600px;
+			  display: grid;
+			  justify-items: center;
+			  align-items: center;
+			  background-color: #F5F5F5;
+			  border-radius: 7px;
+        }
+  	button.btn:link { color: red; text-decoration: none;}
+ 	button.btn:visited { color: white; text-decoration: none;}
+ 	button.btn:hover { color: #22aee5; text-decoration: underline;}
+ 
+.btn{
+      
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: #3a3a3a;
+        cursor: pointer;
+        outline: none;
+   }
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+<div id="container">
+   <div class="main">
+   <h1>회원탈퇴<h1>
+         <h4>나의 정보</h4>
+            <form action="/user/delUser" method="post" th:object="${deleteUserCommand}"  >
+               <table class="table">
+                  <tr>
+                     <th>아이디</th>
+                     <td>
+                     	<span th:text="${session.mdto.id}"></span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>비밀번호 확인</th>
+                     <td>
+                     	<input type="password" name="password"  placeholder="변경할 비밀번호 입력" class="form-control"  />
+                     </td>
+                  </tr>
+               </table>
+                  <tr>
+                  	<th>
+                        <td><input type="submit" value="회원탈퇴" class="btn"/></td>
+                        <td><input type="button" value="취소" class="btn" onclick="location = '/addUser'"/></td>
+                     </th>   
+                   </tr>
+            </form>
+      </div>
+     </div>
+ </div>
+</body>
+</html>

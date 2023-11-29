@@ -1,6 +1,7 @@
 package com.hk.calboard.service;
 
 import java.io.PrintWriter;
+import java.util.Map;
 
 import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;import org.springframework.data.convert.DtoInstantiatingConverter;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.hk.calboard.command.AddUserCommand;
+import com.hk.calboard.command.DeleteUserCommand;
 import com.hk.calboard.command.LoginCommand;
+import com.hk.calboard.command.UpdatePasswordCommand;
 import com.hk.calboard.command.UpdateUserCommand;
 import com.hk.calboard.dtos.MemberDto;
 import com.hk.calboard.dtos.UserDto;
@@ -85,6 +88,22 @@ public class MemberService {
 		
 		return memberMapper.getUser(dto);
 	}	
+	
+	public boolean pwChk(UpdatePasswordCommand updatePasswordCommand) {
+		
+		MemberDto mdto=new MemberDto();
+		mdto.setId(updatePasswordCommand.getId());
+		mdto.setPassword(updatePasswordCommand.getPassword());
+		return memberMapper.pwChk(mdto);	
+	}
+
+	public boolean delUser(DeleteUserCommand deleteUserCommand, HttpServletRequest request, Model model) {
+		return memberMapper.delUser(deleteUserCommand.getId());
+	}
+
+	public boolean delUser(String id, HttpServletRequest request, Model model) {
+		return memberMapper.delUser(id);
+	}
 }
 
 

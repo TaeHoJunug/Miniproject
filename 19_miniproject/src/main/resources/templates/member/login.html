@@ -32,7 +32,6 @@
         
         #container{
               width: 30%;
-			  height: 500px;
 			  display: grid;
 			  justify-items: center;
 			  align-items: center;
@@ -44,22 +43,21 @@
         }
 
        .button{
-          width: 100%;
-		  padding: 7px;
-		  border: none;
-		  border-radius: 5px;
+       	  width : 50%;
+       	  border : 10px;
 		  color: white;
 		  font-weight: bold;
 		  background-color: #3a3a3a;
 		  cursor: pointer;
 		  outline: none;
+		  float : left;
   }
 </style>
 </head>
 <body>
 <div layout:fragment="content">
 <div id="container">
-<form action="/user/login" method="post" th:object="${loginCommand}" id="login-form">
+<form action="/login" method="post" th:object="${loginCommand}" id="login-form">
 		<tr>
 			<h2>LOGIN</h2>
 			<th>아이디:</th>
@@ -81,7 +79,9 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				  <input type="submit" value="Login" class="button"/>
+				  <input type="submit" value="login" class="button"/>
+				  <span th:text="${msg}"></span> 
+				  <input type="button" value="signin" class="button" onclick="location = '/addUser'"/>
 				  <span th:text="${msg}"></span> 
 			</td>
 		</tr>

@@ -59,6 +59,12 @@ public class UserDto implements Serializable {
 		this.email = email;
 	}
 	
+	public UserDto(String id, String password) {
+		super();
+		this.id = id;
+		this.password = password;
+	}
+
 	public int getSeq() {
 		return seq;
 	}

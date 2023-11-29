@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.hk.calboard.command.AddUserCommand;
+import com.hk.calboard.command.DeleteUserCommand;
 import com.hk.calboard.command.LoginCommand;
+import com.hk.calboard.command.UpdatePasswordCommand;
 import com.hk.calboard.command.UpdateUserCommand;
 import com.hk.calboard.dtos.MemberDto;
 import com.hk.calboard.dtos.UserDto;
@@ -29,9 +32,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/")
 public class MemberController {
-
+	Logger logger=LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	private MemberService memberService;
 	private HttpServletRequest request;
@@ -85,7 +89,7 @@ public class MemberController {
 	   }
 	
 	//로그인 폼 이동
-	@GetMapping(value = "/login")
+	@GetMapping(value = "/")
 	public String loginForm(Model model) {
 		model.addAttribute("loginCommand", new LoginCommand());
 		System.out.println("로그인폼 이동");
@@ -93,7 +97,7 @@ public class MemberController {
 	}
 	
 	//로그인 실행
-	@PostMapping(value = "/login")
+	@PostMapping(value = "/")
 	public String login(@Validated LoginCommand loginCommand
 			           ,BindingResult result
 			           ,Model model
@@ -130,23 +134,56 @@ public class MemberController {
 			System.out.println("회원수정 접속");
 			return "member/updateUser";
 		}
-//	//나의 정보 수정 페이지 이동
-//	@GetMapping(value = "/updateUser")
-//	public String updateForm(Model model) {
-//		
-//		model.addAttribute("updateUserCommand", new UpdateUserCommand());
-//		System.out.println("회원수정 접속");
-//		return "member/updateUser";
-//	}
-//	
-//	//나의 정보 수정 실행
-//	@PostMapping(value="/updateUser")
-//	public String getUser(@Validated UpdateUserCommand updateUserCommand, 
-//							  BindingResult result,	
-//							  Model model,
-//							  HttpServletRequest request) {
-//		return "member/updateUser";
-//	}
+	//비밀번호 변경
+		@PostMapping(value = "/pwChk")
+		public String pwChk(@Validated UpdatePasswordCommand updatePasswordCommand
+				             ,BindingResult result,Model model) {
+			System.out.println("비밀번호변경하기");
+			
+			if(result.hasErrors()) {
+				System.out.println("회원가입 유효값 오류");
+				return "member/updateUser";
+			}
+			
+			try {
+				memberService.pwChk(updatePasswordCommand);
+				System.out.println("수정완료");
+				return "redirect:/";
+			} catch (Exception e) {
+				System.out.println("회원가입실패");
+				e.printStackTrace();
+				return "redirect:pwChk";
+			}
+
+		}
+		//로그인 폼 이동
+		@GetMapping(value = "/delUser")
+		public String delUserForm(Model model) {
+			model.addAttribute("deleteUserCommand", new DeleteUserCommand());
+			System.out.println("로그인폼 이동");
+			return "member/delUserForm";
+		}
+		
+	//회원탈퇴
+		@PostMapping(value = "/delUser")
+		public String delUser(@Validated DeleteUserCommand deleteUserCommand
+				           ,BindingResult result
+				           ,Model model
+				           ,HttpServletRequest request) {
+			if(result.hasErrors()) {
+				System.out.println("로그인 유효값 오류");
+				return "member/delUserForm";
+			}
+			HttpSession session=(HttpSession) request.getSession();
+			MemberDto mdto=(MemberDto)session.getAttribute("mdto");
+			MemberDto dto=memberService.getUser(mdto);
+			boolean path=memberService.delUser(mdto.getId(), request, model);
+			if(path) {
+				request.getSession().invalidate();
+			}
+			model.addAttribute("loginCommand", new LoginCommand());
+			return "member/login";
+		}
 }
 
 
