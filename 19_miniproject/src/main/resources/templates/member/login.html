@@ -28,6 +28,7 @@
             box-sizing: border-box;
             border-radius: 5px;
             border: none;
+            text-align:center;
         }
         
         #container{
@@ -42,9 +43,18 @@
             margin-bottom: 20px;
         }
 
+<<<<<<< HEAD
        .button{
        	  width : 50%;
        	  border : 10px;
+=======
+
+       .button {
+          width: 100%;
+		  padding: 7px;
+		  border: none;
+		  border-radius: 5px;
+>>>>>>> branch 'main' of https://github.com/TaeHoJunug/Miniproject.git
 		  color: white;
 		  font-weight: bold;
 		  background-color: #3a3a3a;
@@ -52,12 +62,30 @@
 		  outline: none;
 		  float : left;
   }
+          .butt{
+       	  color:white;
+          
+          padding: 7px;
+		  border: none;
+		  border-radius: 5px;
+		  font-weight: bold;
+		  background-color: #3a3a3a;
+		  cursor: pointer;
+		  text-align:center;	
+  }
+    	a.butt:link { color: white; text-decoration: none;}
+ 		a.butt:visited { color: white; text-decoration: none;}
+ 		a.butt:hover { color: white; text-decoration: underline;}
 </style>
 </head>
 <body>
 <div layout:fragment="content">
 <div id="container">
+<<<<<<< HEAD
 <form action="/login" method="post" th:object="${loginCommand}" id="login-form">
+=======
+<form action="/" method="post" th:object="${loginCommand}" id="login-form">
+>>>>>>> branch 'main' of https://github.com/TaeHoJunug/Miniproject.git
 		<tr>
 			<h2>LOGIN</h2>
 			<th>아이디:</th>
@@ -79,10 +107,15 @@
 		</tr>
 		<tr>
 			<td colspan="2">
+<<<<<<< HEAD
 				  <input type="submit" value="login" class="button"/>
 				  <span th:text="${msg}"></span> 
 				  <input type="button" value="signin" class="button" onclick="location = '/addUser'"/>
+=======
+				  <input type="submit" value="로그인" class="button"/>
+>>>>>>> branch 'main' of https://github.com/TaeHoJunug/Miniproject.git
 				  <span th:text="${msg}"></span> 
+				  <a class="butt" href="/addUser">회원가입</a>
 			</td>
 		</tr>
 </form>

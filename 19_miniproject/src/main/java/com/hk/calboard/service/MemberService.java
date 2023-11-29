@@ -89,6 +89,7 @@ public class MemberService {
 		return memberMapper.getUser(dto);
 	}	
 	
+<<<<<<< HEAD
 	public boolean pwChk(UpdatePasswordCommand updatePasswordCommand) {
 		
 		MemberDto mdto=new MemberDto();
@@ -104,6 +105,11 @@ public class MemberService {
 	public boolean delUser(String id, HttpServletRequest request, Model model) {
 		return memberMapper.delUser(id);
 	}
+=======
+	//wdasddadsadadadasdasds회원탈
+
+	
+>>>>>>> branch 'main' of https://github.com/TaeHoJunug/Miniproject.git
 }
 
 

@@ -9,6 +9,7 @@
 		<result property="title"   column="TITLE" />
 		<result property="content" column="CONTENT" />
 		<result property="regdate" column="REGDATE" />
+		<result property="money" column="MONEY" />
 <!-- 		<association property="fileBoardDto"></association> -->
 		<collection property="fileBoardDto" resultMap="fileBoardDtoMap" ></collection>
 	</resultMap>
@@ -41,7 +42,7 @@
 	<insert id="insertBoard" parameterType="boardDto"
 		useGeneratedKeys="true" keyProperty="board_seq">
 		INSERT INTO TESTBOARD
-		VALUES(NULL,#{id},#{title},#{content},sysdate(),'N')
+		VALUES(NULL,#{id},#{title},#{content},#{money},sysdate(),'N')
 	</insert>
 	
 	<update id="updateBoard" parameterType="boardDto">

@@ -23,19 +23,24 @@
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'main' of https://github.com/TaeHoJunug/Miniproject.git
 	<select id="getUser" parameterType="String" resultType="memberDto">
 		SELECT MEMBERID, ID, NAME, PASSWORD, EMAIL, ADDRESS, ROLE
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
+<<<<<<< HEAD
 	
 	<delete id="delUser" parameterType="String" > 
 	 DELETE FROM MEMBER 
 	 WHERE ID = #{id}
 	</delete>
+=======
+>>>>>>> branch 'main' of https://github.com/TaeHoJunug/Miniproject.git
 </mapper>
-
 
 
 

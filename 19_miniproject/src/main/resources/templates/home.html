@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/thymeleaf/layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+
+        body {
+       
+            background-color: #F5F5F5;
+        }
+        
+        #container{
+              width: 30%;
+			  height: 500px;
+			  display: grid;
+			  justify-items: center;
+			  align-items: center;
+			  background-color: #F5F5F5;
+			  border-radius: 7px;
+        }
+
+       .butt{
+       	  color:white;
+          width: 100%;
+          padding: 10px;
+		  border: none;
+		  border-radius: 5px;
+		  font-weight: bold;
+		  background-color: #22aee5;
+		  cursor: pointer;
+		  text-align:center;	
+  }
+  	a.butt:link { color: red; text-decoration: none;}
+ 	a.butt:visited { color: white; text-decoration: none;}
+ 	a.butt:hover { color: white; text-decoration: underline;}
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+<div id="container">
+   <th:block th:if="${session.mdto==null}">
+      <p>
+         <a class="butt" href="/login">로그인</a>
+         <a class="butt" href="/addUser">회원가입</a>
+      </p>
+   </th:block>
+   <th:block th:unless="${session.mdto==null}">
+      <p>
+         <span th:text="${session.mdto.role}"></span>
+         <span th:text="${session.mdto.id}"></span>
+         <a href="/logout">로그아웃</a>
+      </p>
+   </th:block>
+   </div>
+</div>
+</body>
+</html>

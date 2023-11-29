@@ -7,10 +7,6 @@
 <meta charset="UTF-8">
 <title></title>
 <style type="text/css">
-	h1{
-		font : bold;
-		font-size: 20px;
-	}
 
 
 	.cal{width: 100%;}
@@ -18,7 +14,8 @@
 										 width: 140px;
 										 }
 		
-	.cal #thead > div{ text-align:center;}	
+	.cal #thead > div{ text-align:center;
+				}	
 	
 /*     날짜표현 div */
     .cal #tbody > div{
@@ -50,7 +47,19 @@
     	text-align: center;
     	font-weight: bold;
     }
-    
+    .Y,h1{
+    	font-size: 25px;
+    	font-weight:800;
+    }
+    h2{
+    	font-size: 15px;
+    	font-weight:500;
+    }
+    .name{
+    	font-size:20px;
+    	font-weight:bold;
+    }
+
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -71,6 +80,7 @@
 			data:{"yyyyMMdd":yyyyMMdd},
 			dataType:"json",
 			async:false,
+			
 			success:function(data){
 			//	alert(data.count);
 				aDate.after("<div class='cp'>"+data.count+"</div>");
@@ -92,7 +102,10 @@
 <!--<form action="/schedule/calendar" method="post">-->
 <div layout:fragment="content">
 	<div id="container">
-		<h1>(11)월 총지출액 :<br>총 수입액 : <br>(user)의 이번달 결산</h1>
+		<h1><span class="Y" th:text="${calMap.month}"></span>월</h1>
+		<h2>총 지출액 : </h2>
+		<h2>총 수입액 : </h2>
+		<h2><span class="name" th:text="${session.mdto.id}"></span>님의 이번달 결산 : </h2>
 		<div class="cal">
 			<div id="ctitle">
 				<a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">◁</a>

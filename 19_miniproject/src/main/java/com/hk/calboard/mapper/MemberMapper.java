@@ -20,12 +20,16 @@ public interface MemberMapper {
 	public MemberDto loginUser(String id);
 	
 	public MemberDto getUser(MemberDto dto);
+<<<<<<< HEAD
 
 	public boolean pwChk(MemberDto mdto);
 
 	public boolean delUser(String id);
 
+=======
+>>>>>>> branch 'main' of https://github.com/TaeHoJunug/Miniproject.git
 	
+	public String deletUser(MemberDto dto);//회원탈퇴
 }
 
 

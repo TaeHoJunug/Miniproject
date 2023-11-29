@@ -14,7 +14,6 @@
    a:link, a:visited, a:hover, a:active {
    		color:#333;
    		}
-    
 </style>
 <script type="text/javascript">
 
@@ -23,15 +22,20 @@
 <body>
     <header th:fragment="header" class="header">	
     		<img class="logo" th:src="@{/img/AccountBook.png}" />
-    		<h2>나의 지갑</h2>
     		<nav>
     			<ul>
+<<<<<<< HEAD
 					<th:block th:if="${session.mdto==null}">	
+=======
+    				<th:block th:if="${session.mdto==null}">
+    				<h2>나의 지갑</h2>
+>>>>>>> branch 'main' of https://github.com/TaeHoJunug/Miniproject.git
     				<li class="active"><a href="/">Home</a></li>
     				<li><a id="mypage" href="/mypage">Mypage</a></li>
     				<li><a href="/">Login</a></li>
     				</th:block>
     				<th:block th:unless="${session.mdto==null}">
+    				<h2><span class="name" th:text="${session.mdto.id}"></span>님의 지갑</h2>
     				<li class="active"><a href="/schedule/calendar">Home</a></li>
     				<li><a id="mypage" href="/mypage">Mypage</a></li>
     				<li><a href="/logout">Logout</a></li>
